@@ -85,7 +85,7 @@ public class PokemonDAO {
 	
 	
 	
-	public void editarPokemon (Pokemon pokemon) throws Exception {
+	public void editarPokemon (Pokemon pokemon, int idPokemon) throws Exception {
 			
 			Connection conexao = BDConfig.getConnection();
 			
