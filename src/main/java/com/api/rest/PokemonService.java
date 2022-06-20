@@ -6,8 +6,11 @@ import com.api.dao.PokemonDAO;
 import com.api.entidade.Pokemon;
 
 import jakarta.annotation.PostConstruct;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
@@ -34,4 +37,25 @@ public class PokemonService {
 		
 		return lista;
 	}
+	
+	
+	@DELETE
+	@Path("/delete/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String deletarNota(@PathParam("id") int idPokemon) {
+		String msg = "";
+		
+		try {
+			pokemonDAO.removerPokemon(idPokemon);
+			
+			msg = "Pokemon removido com sucesso";
+			} catch (Exception e) {
+				msg = "Erro ao remover pokemon";
+				e.printStackTrace();
+			}
+		
+		return msg;
+	}
+	
 }
