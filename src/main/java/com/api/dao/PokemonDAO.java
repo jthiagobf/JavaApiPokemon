@@ -11,7 +11,7 @@ import com.api.entidade.Pokemon;
 
 public class PokemonDAO {
 	
-	public List<Pokemon> listaPokemons() throws Exception {
+	public List<Pokemon> listarPokemons() throws Exception {
 		List<Pokemon> lista = new ArrayList<>();
 	
 	
