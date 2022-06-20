@@ -85,22 +85,34 @@ public class PokemonDAO {
 	
 	
 	
-public void editarPokemon (Pokemon pokemon) throws Exception {
+	public void editarPokemon (Pokemon pokemon) throws Exception {
+			
+			Connection conexao = BDConfig.getConnection();
+			
+			String sql = "UPDATE Pokemon SET name = ?, type_pokemon = ?, pre_evolution = ?, next_evolution = ? WHERE id = ? ";
+			
+			PreparedStatement statement = conexao.prepareStatement(sql);
+			statement.setString(1, pokemon.getName());
+			statement.setString(2, pokemon.getType_pokemon());
+			statement.setString(3, pokemon.getPre_evolution());
+			statement.setString(4,  pokemon.getNext_evolution());
+			statement.setInt(4,  pokemon.getId());
+			statement.execute();
+	
+			
+				
+		}
+
+	public void removerPokemon (int idPokemon) throws Exception {
 		
 		Connection conexao = BDConfig.getConnection();
 		
-		String sql = "UPDATE Pokemon SET name = ?, type_pokemon = ?, pre_evolution = ?, next_evolution = ? WHERE id = ? ";
+		String sql = "DELETE FROM Pokemon WHERE id = ?";
 		
 		PreparedStatement statement = conexao.prepareStatement(sql);
-		statement.setString(1, pokemon.getName());
-		statement.setString(2, pokemon.getType_pokemon());
-		statement.setString(3, pokemon.getPre_evolution());
-		statement.setString(4,  pokemon.getNext_evolution());
-		statement.setInt(4,  pokemon.getId());
+		statement.setInt(1,  idPokemon);
 		statement.execute();
-
 		
-			
 	}
 	
 }
