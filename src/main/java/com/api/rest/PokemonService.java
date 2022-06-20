@@ -38,6 +38,22 @@ public class PokemonService {
 		return lista;
 	}
 	
+	@GET
+	@Path("/get/{id}")
+	@Consumes(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Pokemon listarPorId(@PathParam("id") int idPokemon) {
+		Pokemon pokemon = null;
+		
+		try {
+			pokemon = pokemonDAO.listarPokemonPorId(idPokemon);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return pokemon;
+	}
+	
 	
 	@DELETE
 	@Path("/delete/{id}")
