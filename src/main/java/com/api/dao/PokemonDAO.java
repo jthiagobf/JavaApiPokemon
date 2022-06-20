@@ -67,5 +67,19 @@ public class PokemonDAO {
 		
 		
 		
+	public void addPokemon (Pokemon pokemon) throws Exception {
+		
+		Connection conexao = BDConfig.getConnection();
+		
+		String sql = "INSERT INTO Pokemon(name, type_pokemon, pre_evolution, next_evolution) VALUES(?, ?)";
+		
+		PreparedStatement statement = conexao.prepareStatement(sql);
+		statement.setString(1, pokemon.getName());
+		statement.setString(1, pokemon.getType_pokemon());
+		statement.setString(1, pokemon.getPre_evolution());
+		statement.setString(1,  pokemon.getNext_evolution());
+		
+			
+	}
 	
 }
