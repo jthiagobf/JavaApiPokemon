@@ -36,4 +36,36 @@ public class PokemonDAO {
 	
 	return lista;
 	}
+
+	
+	public Pokemon listarPokemonPorId(int idPokemon) throws Exception {
+		
+		Pokemon pokemon = null;
+		
+		
+		Connection conexao = BDConfig.getConnection();
+		
+		String sql = "SELECT * FROM Pokemon WHERE id = ?";
+		
+		PreparedStatement statement = conexao.prepareStatement(sql);
+		statement.setInt(1, idPokemon);
+		ResultSet rs = statement.executeQuery();
+		
+		while (rs.next()) {
+			pokemon = new Pokemon();
+			pokemon.setId(rs.getInt("id"));
+			pokemon.setName(rs.getString("name"));
+			pokemon.setType_pokemon(rs.getString("type_pokemon"));
+			pokemon.setPre_evolution(rs.getString("pre_evolution"));
+			pokemon.setNext_evolution(rs.getString("next_evolution"));
+			
+			
+		}
+		
+		return pokemon;
+		}
+		
+		
+		
+	
 }
