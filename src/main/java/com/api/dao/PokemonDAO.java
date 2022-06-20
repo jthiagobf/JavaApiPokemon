@@ -63,7 +63,7 @@ public class PokemonDAO {
 		}
 		
 		return pokemon;
-		}
+	}
 		
 		
 		
@@ -75,9 +75,30 @@ public class PokemonDAO {
 		
 		PreparedStatement statement = conexao.prepareStatement(sql);
 		statement.setString(1, pokemon.getName());
-		statement.setString(1, pokemon.getType_pokemon());
-		statement.setString(1, pokemon.getPre_evolution());
-		statement.setString(1,  pokemon.getNext_evolution());
+		statement.setString(2, pokemon.getType_pokemon());
+		statement.setString(3, pokemon.getPre_evolution());
+		statement.setString(4,  pokemon.getNext_evolution());
+		statement.execute();
+		
+			
+	}
+	
+	
+	
+public void editarPokemon (Pokemon pokemon) throws Exception {
+		
+		Connection conexao = BDConfig.getConnection();
+		
+		String sql = "UPDATE Pokemon SET name = ?, type_pokemon = ?, pre_evolution = ?, next_evolution = ? WHERE id = ? ";
+		
+		PreparedStatement statement = conexao.prepareStatement(sql);
+		statement.setString(1, pokemon.getName());
+		statement.setString(2, pokemon.getType_pokemon());
+		statement.setString(3, pokemon.getPre_evolution());
+		statement.setString(4,  pokemon.getNext_evolution());
+		statement.setInt(4,  pokemon.getId());
+		statement.execute();
+
 		
 			
 	}
