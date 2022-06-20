@@ -9,6 +9,7 @@ import jakarta.annotation.PostConstruct;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
@@ -53,6 +54,26 @@ public class PokemonService {
 		}
 		
 		return pokemon;
+	}
+	
+	
+	@POST
+	@Path("/novo/{id}")
+	@Consumes(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
+	public String addNovoPokemon(Pokemon pokemon, @PathParam("id") int idPokemon) {
+		String msg = "";
+		
+		System.out.println(pokemon.getName());
+		
+		try {
+			pokemonDAO.addPokemon(pokemon);
+		} catch (Exception e) {
+			msg = "Erro ao editar pokemon";
+			e.printStackTrace();
+		}
+		
+		return msg;
 	}
 	
 	
